@@ -3,8 +3,8 @@
 Android N的实现来自 https://github.com/avs333/Nougat_dlfunctions
 
 做了一点优化处理
-    - 支持除arm之外的CPU架构以支持模拟器，x86，x86_64经过验证没问题，mips和mips64可编译但没经过验证。
-    - 支持传递文件名而非绝对路径
+ - 支持除arm之外的CPU架构以支持模拟器，x86，x86_64经过验证没问题，mips和mips64可编译但没经过验证。
+ - 支持传递文件名而非绝对路径
     
 ### 技术原理
 
