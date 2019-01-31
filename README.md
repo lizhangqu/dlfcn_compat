@@ -16,9 +16,6 @@ Android N的实现来自 https://github.com/avs333/Nougat_dlfunctions
 
 ### 使用方式
 
-
-请使用ndk-r14进行编译
-
 引入cmake
 
 ```
