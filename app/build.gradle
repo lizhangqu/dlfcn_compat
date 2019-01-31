@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.global_compileSdkVersion
+    buildToolsVersion rootProject.ext.global_buildToolsVersion
+
+    defaultConfig {
+        applicationId "io.github.lizhangqu.dlfcn.sample"
+        minSdkVersion 14
+        targetSdkVersion rootProject.ext.global_targetSdkVersion
+        versionCode 1
+        versionName "1.0.0"
+        ndk {
+            abiFilters "armeabi"
+        }
+        externalNativeBuild {
+            cmake {
+
+            }
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path project.file("src/main/cpp/CMakeLists.txt")
+        }
+
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'demo'
+            keyPassword '123456'
+            storeFile project.file('demo.keystore')
+            storePassword '123456'
+        }
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            jniDebuggable true
+            signingConfig signingConfigs.release
+            minifyEnabled false
+        }
+        release {
+            debuggable false
+            jniDebuggable false
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.tencent.bugly:crashreport:2.6.6.1'
+    implementation 'com.tencent.bugly:nativecrashreport:3.3.1'
+}
