@@ -88,8 +88,12 @@ void *fake_dlopen_with_path(const char *libpath, int flags) {
     maps = fopen("/proc/self/maps", "r");
     if (!maps) fatal("failed to open maps");
 
-    while (!found && fgets(buff, sizeof(buff), maps))
-        if (strstr(buff, "r-xp") && strstr(buff, libpath)) found = 1;
+    while (!found && fgets(buff, sizeof(buff), maps)) {
+        if ((strstr(buff, "r-xp") || strstr(buff, "r--p")) && strstr(buff, libpath)) {
+            found = 1;
+            break;
+        }
+    }
 
     fclose(maps);
 
